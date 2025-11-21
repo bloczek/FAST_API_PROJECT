@@ -7,11 +7,17 @@ repository = "https://github.com/bloczek/FAST-API-Project"
 documentation = "https://bloczek.github.io/FAST-API-Project/"
 readme = "README.md"
 packages = [
-  {include = "fast_api"}
+  {include = "fast_api"},
+  {include = "mcp_server"}
 ]
 
+[tool.poetry.scripts]
+my-test-mcp-server = "mcp_server.server:main"
+
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.10,<4.0"
+mcp = {extras = ["cli"], version = "^1.14.1"}
+python-dotenv = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
@@ -50,6 +56,8 @@ testpaths = ["tests"]
 target-version = "py39"
 line-length = 120
 fix = true
+
+[tool.ruff.lint]
 select = [
     # flake8-2020
     "YTT",
